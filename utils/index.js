@@ -12,7 +12,7 @@ const writefile = function(pathstring, data) {
 
 const db = async function({newobject, data}) {
     const dbjson = data || await getfile ('./db/db.json')
-        .then(data->JSON.parse(data))
+        .then(data=>JSON.parse(data))
     if(newobject) {
         newobject.id = uuid() 
         dbjson.push(newobject)

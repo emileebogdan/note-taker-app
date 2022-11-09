@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = require('./routes/notes');
-
+const path = require('path');
 const PORT = process.env.port || 3001;
 
 const app = express();
