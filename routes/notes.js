@@ -6,7 +6,35 @@ router.get('/', async(req, res) => {
     res.json(data)
 });
 
-// post route
-// pass object with keys being what are sent in the function data or new object 
-// delete route
-module.exports=router
+router.post('/', async(req, res) => {
+    if(req.body.title && req.body.text) {
+        const data = await db({newobject: req.body});
+        res.json(data);
+    }
+    else{
+        res.status(500).send('Incorrect Submission');
+    }
+});
+
+router.delete('/:noteid', async (req, res) => {
+    const noteid = req.params.noteid;
+    if(noteid) {
+        let deleted;
+        const data = (await db({}))
+            .filter(noteObject => {
+                if(noteid === noteObject.id) {
+                    deleted = noteObject
+                    return false
+                }
+                return true
+            });
+            await db({data})
+            res.json(data);
+    }
+    else{
+        res.status(500).send('Incorrect Submission');
+    }
+});
+
+
+module.exports = router

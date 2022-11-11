@@ -18,8 +18,9 @@ const db = async function({newobject, data}) {
         dbjson.push(newobject)
     }
     if(newobject || data) {
-        await writefile('./db/db.json',JSON.strigify(data, null, 4));
+        await writefile('./db/db.json',JSON.stringify(dbjson, null, 4));
     }
+    return dbjson;
 };
 
 module.exports = db
